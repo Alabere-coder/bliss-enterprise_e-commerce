@@ -19,7 +19,7 @@ export function FeaturedCollection({
   alignment = "left",
 }: FeaturedCollectionProps) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center">
       {alignment === "right" && (
         <div className="aspect-[4/5] overflow-hidden rounded-lg">
           <Image
