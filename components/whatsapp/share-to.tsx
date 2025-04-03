@@ -31,9 +31,7 @@ interface WhatsAppShareProps {
 
 export default function WhatsAppShare({
   product,
-  variant = "default",
   size = "default",
-  className = "",
 }: WhatsAppShareProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
