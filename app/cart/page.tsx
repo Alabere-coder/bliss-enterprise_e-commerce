@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import WhatsAppShare from "@/components/whatsapp/share-to";
+import WhatsAppCartShare from "@/components/whatsapp/share-cart";
 
 export default function CartPage() {
   const { cart, updateQuantity, removeFromCart, clearCart } = useCart();
@@ -132,9 +133,19 @@ export default function CartPage() {
             </div>
           </div>
 
-          <Link href="/checkout">
-            <Button className="w-full">Proceed to Checkout</Button>
-          </Link>
+          <div className="space-y-6">
+            <Link href="/checkout">
+              <Button className="w-full">Proceed to Checkout</Button>
+            </Link>
+            <WhatsAppCartShare
+              cart={cart}
+              subtotal={subtotal}
+              shipping={shipping}
+              total={total}
+              variant="outline"
+              className="w-full mt-2 bg-green-700 text-white"
+            />
+          </div>
         </div>
       </div>
     </div>
