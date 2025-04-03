@@ -14,7 +14,7 @@ import { PhoneIcon as WhatsappIcon } from "lucide-react";
 import type { Product } from "../types/index";
 
 // Replace with your WhatsApp number (include country code without +)
-const WHATSAPP_NUMBER = "23430324506";
+const WHATSAPP_NUMBER = "2348130324506";
 
 interface WhatsAppShareProps {
   product: Product;
