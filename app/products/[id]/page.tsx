@@ -9,6 +9,7 @@ import ProductCard from "@/components/ProductCards";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import type { Metadata } from "next";
+import WhatsAppShare from "@/components/whatsapp/share-to";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -99,8 +100,9 @@ export default async function ProductPage({ params }: PageProps) {
             </div>
           )}
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-col sm:flex-col gap-3">
             <AddToCartButton product={product} />
+            <WhatsAppShare product={product} variant="secondary" />
           </div>
 
           <div className="mt-8 border-t pt-8">

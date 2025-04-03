@@ -182,7 +182,7 @@ export default async function Home() {
       </div>
 
       {/* Featured Products */}
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-12 md:py-24 lg:py-20">
         <div className="container2 px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="space-y-2">
@@ -210,7 +210,7 @@ export default async function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20">
+      <section className="py-12">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center animate-on-scroll">
             <span className="inline-block text-xs uppercase tracking-wider text-gray-500 mb-2">

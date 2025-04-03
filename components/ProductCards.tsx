@@ -3,6 +3,15 @@ import Image from "next/image";
 import type { Product } from "./types/index";
 import AddToCartButton from "./add-to-cart-button";
 import { Badge } from "@/components/ui/badge";
+import { MoreHorizontal } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "./ui/button";
+import WhatsAppShare from "./whatsapp/share-to";
 
 export default function ProductCard({ product }: { product: Product }) {
   // Check if product is new (either explicitly marked or added within the last 30 days)
@@ -37,7 +46,29 @@ export default function ProductCard({ product }: { product: Product }) {
         <p className="text-sm text-muted-foreground mb-3">{product.category}</p>
         <div className="flex items-center justify-between">
           <span className="font-semibold">${product.price.toFixed(2)}</span>
-          <AddToCartButton product={product} compact />
+          <div className="flex items-center gap-1">
+            <AddToCartButton product={product} compact />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="ghost" className="h-9 w-9 p-0">
+                  <MoreHorizontal className="h-4 w-4" />
+                  <span className="sr-only">More options</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem asChild>
+                  <Link href={`/products/${product.id}`}>View Details</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <WhatsAppShare
+                    product={product}
+                    variant="ghost"
+                    className="w-full justify-start px-2"
+                  />
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </div>
     </div>
@@ -52,65 +83,3 @@ function isRecentlyAdded(dateString: string): boolean {
 
   return productDate >= thirtyDaysAgo;
 }
-
-// import React, { useState } from "react";
-// import Link from "next/link";
-// import { Product } from "./types";
-
-// interface ProductCardProps {
-//   product: Product;
-// }
-
-// export function ProductCard({ product }: ProductCardProps) {
-//   const [isHovered, setIsHovered] = useState(false);
-//   const [imageLoaded, setImageLoaded] = useState(false);
-
-//   return (
-//     <Link
-//       href={`/product/${product.id}`}
-//       className="product-card group"
-//       onMouseEnter={() => setIsHovered(true)}
-//       onMouseLeave={() => setIsHovered(false)}
-//     >
-//       <div className="image-container aspect-[3/4] mb-4 bg-gray-100 overflow-hidden rounded-lg">
-//         <img
-//           src={
-//             isHovered && product.hoverImage ? product.hoverImage : product.image
-//           }
-//           alt={product.name}
-//           className={`image w-full h-full object-cover transition-all duration-700 ${
-//             imageLoaded ? "image-loaded" : "image-loading"
-//           }`}
-//           onLoad={() => setImageLoaded(true)}
-//         />
-//       </div>
-
-//       <div className="product-details transition-opacity">
-//         <p className="text-xs text-gray-500 mb-1">{product.category}</p>
-//         <h3 className="text-base font-medium text-gray-900 mb-1">
-//           {product.name}
-//         </h3>
-//         <div className="flex items-center justify-between">
-//           <p className="text-sm font-medium">
-//             ${product.price.toFixed(2)}
-//             {product.compareAtPrice && (
-//               <span className="text-gray-400 line-through ml-2">
-//                 ${product.compareAtPrice.toFixed(2)}
-//               </span>
-//             )}
-//           </p>
-//           {product.isNew && (
-//             <span className="inline-block bg-black text-white text-xs px-2 py-1 rounded">
-//               New
-//             </span>
-//           )}
-//           {product.compareAtPrice && !product.isNew && (
-//             <span className="inline-block bg-red-500 text-white text-xs px-2 py-1 rounded">
-//               Sale
-//             </span>
-//           )}
-//         </div>
-//       </div>
-//     </Link>
-//   );
-// }
